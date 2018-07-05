@@ -37,4 +37,4 @@ class FreeimgUpLoad():
             self.filename = args.filename
         else:
             self.filename = filename
-        self.outPut(self.upImag())
+        self.outPut(self.upimag())
