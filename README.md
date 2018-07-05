@@ -3,7 +3,7 @@
 ### 开发环境
 依赖`pipenv`管理,具体安装参见[pipenv#installation](https://github.com/pypa/pipenv#installation)。
 安装pipenv之后, 进入项目根目录（含有Pipfile文件目录），
-执行以下命令，安装`imgHosting`到本地环境。
+执行以下命令，安装`imgHosting`到本地环境。
 ```shell
 pipenv install --skip-lock
 pipenv install '-e .' --dev --skip-lock
