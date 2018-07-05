@@ -1,8 +1,11 @@
 # imgHosting
 ## 使用说明
 ### 开发环境
+
 依赖`pipenv`管理,具体安装参见[pipenv#installation](https://github.com/pypa/pipenv#installation)。
+
 安装pipenv之后, 进入项目根目录（含有Pipfile文件目录），
+
 执行以下命令，安装`imgHosting`到本地环境。
 ```shell
 pipenv install --skip-lock
@@ -20,7 +23,9 @@ python imgHosting/uploads/GroupJD_0001.py -f imgHosting/uploads/test.png
 ### uploads编写
 
 在`uploads`目录下:
+
 新建文件
+
 例如`GroupJD_0001.py`:
 
 首先导入相关接口：
@@ -30,8 +35,10 @@ from imgHosting import FreeimgUpLoad
 import requests
 ```
 定义Upload类继承FreeimgUpLoad
+
 在`__init__`下目前就这个几个参数需要定义
-`self.isUploadGif`:此上传是否支持gif图片
+
+`self.isUploadGif`:此上传是否支持gif图片
 ```python
 class Upload(FreeimgUpLoad):
 
@@ -46,7 +53,9 @@ class Upload(FreeimgUpLoad):
         <返回图片的url>
 ```
 下面看一下`GroupJD_0001.py`的`upimag`方法:
+
 `self.filename`就是运行时`-f`指定的文件。
+
 返回一个成功上传的图片`url`
 ```python
     try:
