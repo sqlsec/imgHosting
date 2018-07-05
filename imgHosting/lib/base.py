@@ -5,7 +5,7 @@ from imgHosting.lib.parse import create_cmd_parser
 from colorama import Fore
 
 
-class FreeImgUpLoad():
+class FreeimgUpLoad():
 
     def __init__(self):
         self.name = ""
@@ -13,7 +13,7 @@ class FreeImgUpLoad():
         self.isUploadGif = None
         self.target = None
 
-    def upImag(self):
+    def upimag(self):
         '''
         子类 Upload 中必须覆写方法 upImag
         '''

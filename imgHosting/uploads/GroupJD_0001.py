@@ -1,11 +1,11 @@
 # coding:utf-8
 
-from imgHosting import FreeImgUpLoad
+from imgHosting import FreeimgUpLoad
 
 import requests
 
 
-class Upload(FreeImgUpLoad):
+class Upload(FreeimgUpLoad):
 
     def __init__(self):
         super(Upload, self).__init__()
@@ -13,7 +13,7 @@ class Upload(FreeImgUpLoad):
         self.author = "hyhmnn"
         self.isUploadGif = False
 
-    def upImag(self):
+    def upimag(self):
         try:
             with open(self.filename, 'rb') as file:
                 url = 'https://group.jd.com/ueditor/jsp/imageUp.jsp?action=uploadimage&encode=utf-8'

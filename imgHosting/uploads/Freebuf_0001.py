@@ -1,12 +1,12 @@
 # coding: utf-8
 
-from imgHosting import FreeImgUpLoad
+from imgHosting import FreeimgUpLoad
 
 import requests
 import json
 
 
-class Upload(FreeImgUpLoad):
+class Upload(FreeimgUpLoad):
 
     def __init__(self):
         super(Upload, self).__init__()
@@ -14,7 +14,7 @@ class Upload(FreeImgUpLoad):
         self.author = "国光"
         self.isUploadGif = True
 
-    def upImag(self):
+    def upimag(self):
         try:
             with open(self.filename, 'rb') as file:
                 url = 'http://www.freebuf.com/buf/plugins/ueditor/ueditor/php/imageUp.php?&post_id='

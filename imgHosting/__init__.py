@@ -1,3 +1,3 @@
-from imgHosting.lib.base import FreeImgUpLoad
+from imgHosting.lib.base import FreeimgUpLoad
 
-__all__ = ["imgHosting"]
+__all__ = ["FreeimgUpLoad"]
