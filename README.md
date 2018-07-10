@@ -81,23 +81,3 @@ class Upload(FreeimgUpLoad):
 if __name__ == '__main__':
     Upload().run()
 ```
-
----
-
-# webapp正在开发中...
-> 对前端和web不是很了解，导致开发进度有点慢！！!
-
-有没有前端大佬来帮忙解决问题，图片上传显示的问题，下面简单描述下具体加qq2827340173说：
-![](http://img30.360buyimg.com/club_community/jfs/t21952/118/2024229047/18076/ed485ae5/5b4457ceN5ad31332.jpg)
-
-前端框架 使用的`bootstrap`, 因为觉得原来的图片上传比较丑, 所以在input上添加了自己的样式。
-导致选择图片之后这块地方还是不变，用户体验很是不好。
-现在希望选择图片之后，显示 "图片文件名" 和"绿色的√"。
-
-部分代码:
-```html
-<div style="height: 250px;border-radius:8%;background-color:#FFFFFF;padding: 0" class="col-sm-offset-0 col-sm-5">
-    <input name="imgFile" style="height: 250px;opacity: 0; position: absolute; user-select: none;padding: 0" type="file" id="exampleInputFile" class="col-sm-offset-0 col-sm-12">
-    <p style="line-height:240px;text-align: center">选择你要上传的图片哦~</p>
-</div>
-```
