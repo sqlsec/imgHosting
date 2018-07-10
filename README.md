@@ -81,3 +81,9 @@ class Upload(FreeimgUpLoad):
 if __name__ == '__main__':
     Upload().run()
 ```
+
+# webapp正在开发中...
+> 对前端和web是新手所以到开发进度有点慢！！!
+
+执行以下命令，安装`imgHosting`到本地环境。前段
+执行以下命令，安装`imgHosting`到本地环境。
