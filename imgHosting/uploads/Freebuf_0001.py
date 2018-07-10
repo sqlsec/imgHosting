@@ -12,11 +12,12 @@ class Upload(FreeimgUpLoad):
         super(Upload, self).__init__()
         self.name = "FreeBuf上传点"
         self.author = "国光"
+        self.maxsize = 10*1024
         self.isUploadGif = True
 
     def upimag(self):
         try:
-            with open(self.filename, 'rb') as file:
+            with open(self.target, 'rb') as file:
                 url = 'http://www.freebuf.com/buf/plugins/ueditor/ueditor/php/imageUp.php?&post_id='
                 headers = {
                     'Cookie':'3cb185a485c81b23211eb80b75a406fd=1529045953; Hm_lvt_cc53db168808048541c6735ce30421f5=1529045957,1529246161; acw_tc=AQAAABCx0Xx00gMANBLOt2cOXOmatLy0; acw_sc__=5b2a6741e23733ca2c4f902c823361a8ea25ca86; PHPSESSID=85p73eamjnti741gmd42hof9n2',

@@ -11,11 +11,13 @@ class Upload(FreeimgUpLoad):
         super(Upload, self).__init__()
         self.name = "京东论坛上传点"
         self.author = "hyhmnn"
+        self.maxsize = 10*1024
         self.isUploadGif = False
+        
 
     def upimag(self):
         try:
-            with open(self.filename, 'rb') as file:
+            with open(self.target, 'rb') as file:
                 url = 'https://group.jd.com/ueditor/jsp/imageUp.jsp?action=uploadimage&encode=utf-8'
                 headers = {
                     'Host': 'group.jd.com',
