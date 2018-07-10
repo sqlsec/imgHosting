@@ -58,12 +58,12 @@ class Upload(FreeimgUpLoad):
 ```
 下面看一下`GroupJD_0001.py`的`upimag`方法:
 
-`self.filename`就是运行时`-f`指定的文件。
+`self.target`就是运行时`-f`指定的文件。
 
 返回一个成功上传的图片`url`
 ```python
     try:
-        with open(self.filename, 'rb') as file:
+        with open(self.target, 'rb') as file:
             url = 'https://group.jd.com/ueditor/jsp/imageUp.jsp?action=uploadimage&encode=utf-8'
             headers = {
                 'Host': 'group.jd.com',
@@ -76,7 +76,7 @@ class Upload(FreeimgUpLoad):
     except Exception as e:
         return "获取图片失败.错误信息:{0}".format(e)
 ```
-`run()`会解析命令行参数 -f 到 filename 中
+`run()`会解析命令行参数 -f 到 target 中
 ```python
 if __name__ == '__main__':
     Upload().run()
