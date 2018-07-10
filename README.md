@@ -45,9 +45,13 @@ class Upload(FreeimgUpLoad):
     def __init__(self):
         super(Upload, self).__init__()
         self.name = "京东论坛上传点"
+        <上传点的名称>
         self.author = "hyhmnn"
+        <作者>
         self.isUploadGif = False
-
+        <是否支持gif上传>
+        self.maxsize = 10*1024
+        <图片上传限制 单位字节>
     def upimag(self):
         <上传的代码>
         <返回图片的url>
