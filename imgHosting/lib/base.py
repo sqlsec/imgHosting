@@ -4,7 +4,6 @@ from imgHosting.lib.parse import create_cmd_parser
 from imgHosting.lib.logout import LogOutPut
 
 import os
-from colorama import Fore
 
 
 class FreeimgUpLoad(object):
@@ -13,12 +12,13 @@ class FreeimgUpLoad(object):
         self.logout = LogOutPut()
         self.target = None
 
-        # 需要在Upload下完善的参数
+        # 需要在Upload下完善的参数----
         self.name = ""
         self.author = ""
-        # 限制图片大小：已字节(k)为单位
-        self.maxsize = None
-        self.isUploadGif = None
+        # 限制图片大小：已字节(byte)为单位, 默认为 10MB = 10*1024*1024
+        self.maxsize = 10*1024*1024
+        # 是否支持上传gif, 默认为False(不支持)
+        self.isUploadGif = False
 
 
     def upimag(self):

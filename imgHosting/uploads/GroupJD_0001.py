@@ -11,7 +11,7 @@ class Upload(FreeimgUpLoad):
         super(Upload, self).__init__()
         self.name = "京东论坛上传点"
         self.author = "hyhmnn"
-        self.maxsize = 10*1024
+        self.maxsize = 10*1024*1024
         self.isUploadGif = False
         
 

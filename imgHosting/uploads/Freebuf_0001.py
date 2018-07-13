@@ -12,7 +12,7 @@ class Upload(FreeimgUpLoad):
         super(Upload, self).__init__()
         self.name = "FreeBuf上传点"
         self.author = "国光"
-        self.maxsize = 10*1024
+        self.maxsize = 10*1024*1024
         self.isUploadGif = True
 
     def upimag(self):

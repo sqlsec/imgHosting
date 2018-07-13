@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>imgHosting</title>
+    <link rel="icon" href="../static/images/tag.png">
+    <!-- Bootstrap -->
+    <link href="../static/css//bootstrap.min.css" rel="stylesheet">
+    <link href="../static/css/bootstrap-fileinput.css" rel="stylesheet">
+    <!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
+    <!-- 警告：通过 file:// 协议（就是直接将 html 页面拖拽到浏览器中）访问页面时 Respond.js 不起作用 -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <!-- 介绍 -->
+    <div class="jumbotron col-md-6 col-xs-8 col-md-offset-3 col-xs-offset-2">
+        <h1>imgHosting</h1>
+        <p>一个开源的图床上传框架。欢迎fork提交各个大小站点的图片上传点。</p>
+        <p><a class="btn btn-primary btn-lg" href="https://github.com/hyhmnn/imgHosting" role="button">关于：imgHosting</a></p>
+    </div>
+    <!-- 使用标题 -->
+    <div class="page-header col-md-6 col-xs-8 col-md-offset-3 col-xs-offset-2" >
+        <h1>开始使用吧<small>享受免费图床吧~</small></h1>
+    </div>
+    <div class="panel panel-default col-md-6 col-xs-8 col-md-offset-3 col-xs-offset-2"style="background-color:#ebebeb">
+        <div class="panel-body">
+          <!-- form 表单 -->
+          <form id="postForm" class="form-horizontal">
+            <!-- enctype=multipart/form-data action="/uploads" method="POST" -->
+              <!-- 选择图片 -->
+              <div class="form-group" id="uploadForm" enctype='multipart/form-data'>
+                <div class="col-sm-offset-2 col-sm-10">
+                  <div class="h4">图片预览</div>
+                  <div class="fileinput fileinput-new" data-provides="fileinput"  id="exampleInputUpload">
+                      <div class="fileinput-new thumbnail" style="width: 200px;height: auto;max-height:150px;">
+                          <img id='picImg' style="width: 100%;height: auto;max-height: 140px;" src="../static/images/noimage.png" alt="" />
+                      </div>
+                      <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                      <div>
+                          <span class="btn btn-primary btn-file">
+                              <span class="fileinput-new">选择文件</span>
+                              <span class="fileinput-exists">换一张</span>
+                              <input type="file" name="imgFile" id="picID" accept="image/gif,image/jpeg,image/x-png"/>
+                          </span>
+                          <a href="javascript:;" class="btn btn-warning fileinput-exists" data-dismiss="fileinput">移除</a>
+                      </div>
+                  </div>
+                </div>
+            </div>
+              <!-- 选择上传点 -->
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <div style="padding: 0" class="col-sm-offset-0 col-sm-5">
+                      <label for="name">选择上传点</label>
+                      <select class="form-control" name="choicePoint" id="choicePoint">
+                        {% for point in upload_list%}
+                        <option value="{{point}}">{{point}}</option>
+                        {% endfor %}
+                      </select>
+                  </div>
+                </div>
+              </div>
+              <!-- 上传完是否删除缓存图片 -->
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" name="imgdelete" id="imgdelete"> 删除缓存图片
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <!-- 提交 -->
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <button type="button" class="btn btn-primary" id="postSubmit">提交</button>
+                </div>
+              </div>
+          </form>
+        </div>
+    </div>
+    <!-- 输出结果 -->
+    <div class="panel panel-default col-md-6 col-xs-8 col-md-offset-3 col-xs-offset-2" style="background-color:#ebebeb">
+      <div class="panel-body">
+          <div class="h4" style="color:darkslategrey">返回结果在这里哦~</div>
+          <div class="col-sm-offset-0 col-sm-10" style="padding: 0">
+              <input class="form-control alert-success" id="resulturl" type="text" value="{{result}}">
+          </div>
+          <div class="col-sm-offset-0 col-sm-2" style="padding: 0">
+            <input class="form-control" type="button" onClick="jsCopy();" value="复制" />
+          </div>
+      </div>
+    </div>
+    <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+    <script src="../static/js/jquery.min.js"></script>
+    
+    <!-- 引入提醒框 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+    <script src="../static/js/bootstrap.min.js"></script>
+    <!-- 引入图片选择框 -->
+    <script src="../static/js/bootstrap-fileinput.js"></script>
+    
+    <script type="text/javascript">
+    toastr.options.positionClass = 'toast-top-center';
+      // 复制提醒
+      function jsCopy(){
+        var e=document.getElementById("resulturl");//对象是contents 
+        e.select(); //选择对象 
+        tag=document.execCommand("Copy"); //执行浏览器复制命令
+        if(tag){
+        toastr.success('复制内容成功(*^▽^*)');
+        }
+        else{
+        toastr.error('复制内容失败了o(╥﹏╥)o');
+        }
+      };
+      // ajax提交form
+      $('#postSubmit').click(function(){
+          // var postForm = new FormData();
+          // postForm.append(imgFile, $('#picID').val())
+          // postForm.append(choicePoint, $('#choicePoint').val())
+          // postForm.append("imgdelete", $('#imgdelete').val())
+          var postForm = new FormData(document.getElementById("postForm"));
+          $.ajax({
+                type:'POST',
+                url:"/uploads",
+                data:postForm,
+                contentType:false,
+                processData:false,
+                mimeType:"multipart/form-data",
+                dataType:"json",
+                beforeSend(xhr){
+                  toastr.success("正在提交了哦~，耐性等待(*╹▽╹*)");
+                },
+                success:function(data){
+                  if (data["result"] == "success"){
+                    toastr.success("提交成功, 图片地址url在最下方哦~");
+                    $('#resulturl').val(data["content"]);
+                  }else{
+                    toastr.error(data["content"]);
+                    $('#resulturl').val(data["content"]);
+                  }
+                },
+                error:function(data){
+                  toastr.error("提交失败, 将问题反映至此https://github.com/hyhmnn/imgHosting/issues 哦~");
+                  $('#resulturl').val("提交失败, 将问题反映至此https://github.com/hyhmnn/imgHosting/issues 哦~")
+                }
+            });
+
+        });
+  </script>
+
+
+</body>
+</html>

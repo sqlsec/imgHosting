@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import datetime
 from colorama import Fore
 
@@ -9,7 +10,7 @@ class LogOutPut(object):
                 print(Fore.GREEN, "[time]:"+datetime.datetime.now().strftime("%Y--%m--%d %H:%M:%S"))
                 return func(self, strings)
             else:
-                print(Fore.RED, "[Error]:"+"检查输入参数，确保其为字符串或数字。")
+                print(Fore.RED, "[Error]:"+"检查输入参数，确保其为字符串或数字等。")
                 return
             
         return wrappers
